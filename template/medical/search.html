@@ -1,0 +1,211 @@
+{% extends 'medical/index.html' %}
+{% load static %}
+{% load humanize %}
+
+    {% block title %}
+    <title> search results | Tarragon Medics </title>
+    <meta name="robots" content="noindex,nofollow"/>
+
+    {% endblock title %}
+
+
+    <!-- Start All Title Box -->
+    {% block slider %}
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Shop</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active">Shop</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock slider %}
+    <!-- End All Title Box -->
+
+    <!-- Start Shop Page  -->
+    {% block content %}
+    
+    <div class="shop-box-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
+                    <div class="product-categori">
+                        <div class="search-product">
+                            <form action="{% url 'search' %}" method="get">
+                                <input class="form-control" placeholder="Search here..." type="text" name="q" required>
+                                <button type="submit"> <i class="fa fa-search"></i> </button>
+                            </form>
+                        </div>
+                        <div class="filter-sidebar-left">
+                            <div class="title-left">
+                                <h3>Categories</h3>
+                            </div>
+                            <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+                                <a href="{% url 'store' %}" class="list-group-item list-group-item-action"> All items  <small class="text-muted"> </small></a>
+                                <a href="{% url 'operating_theatre_equipment' %}" class="list-group-item list-group-item-action"> Operating Theatre Equipment  <small class="text-muted"> </small></a>
+                                <a href="{% url 'ob_gyn_equipment' %}" class="list-group-item list-group-item-action"> OB/GYN Equipment  <small class="text-muted"> </small></a>
+                                <a href="{% url 'diagnostic_equipment' %}" class="list-group-item list-group-item-action"> Diagnostic Equipment  <small class="text-muted"> </small></a>
+                                <a href="{% url 'sterilizer' %}" class="list-group-item list-group-item-action"> Sterilizer (Autoclave)  <small class="text-muted"> </small></a>
+                                <a href="{% url 'laboratory_equipment' %}" class="list-group-item list-group-item-action"> Laboratory Equipment  <small class="text-muted"> </small></a>
+                                <a href="{% url 'xray_series' %}" class="list-group-item list-group-item-action"> X-ray Series  <small class="text-muted"> </small></a>
+                                <a href="{% url 'invitro_diagnostics' %}" class="list-group-item list-group-item-action"> In-Vitro Diagnostics  <small class="text-muted"> </small></a>
+                                <a href="{% url 'hospital_furniture' %}" class="list-group-item list-group-item-action"> Hospital Furniture  <small class="text-muted"> </small></a>
+                                <a href="{% url 'walking_aids' %}" class="list-group-item list-group-item-action"> Walking Aids  <small class="text-muted"> </small></a>
+                                <a href="{% url 'firstaid_products' %}" class="list-group-item list-group-item-action"> First-Aid Products  <small class="text-muted"> </small></a>
+                                <a href="{% url 'ophthalmic_equipment' %}" class="list-group-item list-group-item-action"> Ophthalmic Equipment  <small class="text-muted"> </small></a>
+                                <a href="{% url 'dental_equipment' %}" class="list-group-item list-group-item-action"> Dental Equipment  <small class="text-muted"> </small></a>
+                                <a href="{% url 'ent_equipment' %}" class="list-group-item list-group-item-action"> ENT Equipment  <small class="text-muted"> </small></a>
+                                <a href="{% url 'home_care_equipment' %}" class="list-group-item list-group-item-action"> Home Care Equipment  <small class="text-muted"> </small></a>
+                                <a href="{% url 'veterinary_equipment' %}" class="list-group-item list-group-item-action"> Veterinary Equipment  <small class="text-muted"> </small></a>
+                                <a href="{% url 'medical_consumables' %}" class="list-group-item list-group-item-action"> Medical Consumables  <small class="text-muted"> </small></a>
+                                
+                                
+                            </div>
+                        </div>
+                        
+                        
+
+                    </div>
+                </div>
+                <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
+                    <div class="right-product-box">
+                        <div class="product-item-filter row">
+                            <div class="col-12 col-sm-8 text-center text-sm-left">
+                                <div class="toolbar-sorter-right">
+                                    <span>Sort by </span>
+                                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+									<option data-display="Select">Nothing</option>
+									<option value="1">Popularity</option>
+									<option value="2">High Price → High Price</option>
+									<option value="3">Low Price → High Price</option>
+									<option value="4">Best Selling</option>
+								</select>
+                                </div>
+                                <p>Showing all {{items.count}}</p>
+                            </div>
+                            <div class="col-12 col-sm-4 text-center text-sm-right">
+                                <ul class="nav nav-tabs ml-auto">
+                                    <li>
+                                        <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i class="fa fa-th"></i> </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" href="#list-view" data-toggle="tab"> <i class="fa fa-list-ul"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row product-categorie-box">
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                                    <div class="row">
+                                    {% if items %}
+                                    
+                                    
+                                    {% for item in items %}
+                                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                            <div class="products-single fix">
+                                                <div class="box-img-hover">
+                                                    <div class="type-lb">
+                                                        <p class="new">New</p>
+                                                    </div>
+                                                    <img src="{{item.image.url}}" class="img-fluid" alt="{{item.name}}" title="{{item.name}}">
+                                                    <div class="mask-icon">
+                                                        <ul>
+                                                            <li><a href="{% url 'shop_details' category=item.category slug=item.slug %}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                        </ul>
+                                                        <a class="cart" href="{% url 'shop_details' category=item.category slug=item.slug %}">Read more</a>
+                                                    </div>
+                                                </div>
+                                                <div class="why-text">
+                                                   <a href="{% url 'shop_details' category=item.category slug=item.slug %}"> <h4 style="color:green">{{item.name}}</h4> </a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        {% else %}
+                                        <h3 style="margin:10%;color:red;">Your search did not return any product. 
+                                        Kindly check your spelling or use different keywords or give us a call on <br>  <a href="tel:+254-727-691-321"><button style="background-color:green"> +254-727-691-321</button></a></h3>
+                                    {% endif %}
+
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="list-view">
+                                        {% if items %}
+                                    {% for item in items %}
+                                    <div class="list-view-box">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                                <div class="products-single fix">
+                                                    <div class="box-img-hover">
+                                                        <div class="type-lb">
+                                                            <p class="new">New</p>
+                                                        </div>
+                                                        <img src="{{item.image.url}}" class="img-fluid" alt="{{item.name}}" title="{{item.name}}">
+                                                        <div class="mask-icon">
+                                                            <ul>
+                                                                <li><a href="{% url 'shop_details' category=item.category slug=item.slug %}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                            </ul>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
+                                                <div class="why-text full-width">
+                                                    <h4>{{item.name}}</h4>
+                                                    
+                                                    <p>{{item.description|safe|linebreaks}}</p>
+                                                    <a class="btn hvr-hover" href="tel:+254-727-691-321">Call +254-727-691-321</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                
+                                    {% else %}
+                                    <h3 style="margin:10%;color:red;">There are no items in this category, Kindly check back later,<br>
+                                                 or give us a call on  <a href="tel:+254-727-691-321"><button style="background-color:green"> +254-727-691-321</button></a></h3>
+
+                                {% endif %}
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+    <!-- End Shop Page -->
+
+
+    <!-- Start Instagram Feed  -->
+    {% block instagram %}
+    {% if instagram %}
+    <div class="instagram-box">
+        <div class="main-instagram owl-carousel owl-theme">
+            {% for item in instagram %}
+            <div class="item">
+                <div class="ins-inner-box">
+                    <img src="{{item.image.url}}"  alt="{{item.name}}" title="{{item.name}}" />
+                    <div class="hov-in">
+                        <a href="{% url 'shop_details' category=item.category slug=item.slug %}"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>{% endif %}
+    {% endblock instagram %}
+    <!-- End Instagram Feed  -->

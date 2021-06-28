@@ -1,0 +1,43 @@
+{% extends 'medical/index.html' %}
+{% load static %}
+
+    <!-- Site Metas -->
+    {% block title %}
+    <title>Message | +254-734-604-700 | Tarragon Medics </title>
+    
+    {% endblock title %}
+    
+
+    <!-- Start All Title Box -->
+    {% block slider %}
+    
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Contact Us</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active"> success ! </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>{% endblock slider %}
+    <!-- End All Title Box -->
+
+    <!-- Start Contact Us  -->
+    {% block content %}
+    
+    <div class="contact-box-main">
+        <div class="container">
+       
+            <h3 style="color:green;text-align:center;">{{message}}</h3>
+        </div>
+    </div>
+   
+        
+    {% endblock content %}
+    <!-- End Cart -->
+
+
